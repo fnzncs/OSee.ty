@@ -1,0 +1,84 @@
+<?php
+session_start();
+
+// If the user is not logged in, redirect them to the login page
+if (!isset($_SESSION['user'])) {
+    header("Location: login.php?error=session_expired");
+    exit();
+}
+$username = $_SESSION['user']['username'];
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Map</title>
+    <link rel="website icon" type="png" href="image/Logo School.png">
+    <link rel="stylesheet" href="https://use.typekit.net/oov2wcw.css">
+    <link rel="stylesheet" href="./css/venue.css" />
+    <style>
+        #customerButton {
+        background-color: #007f45; /* Green background */
+        border: none; /* Remove borders */
+        color: white; /* White text */
+        padding: 15px 32px; /* Some padding */
+        text-align: center; /* Centered text */
+        text-decoration: none; /* Remove underline */
+        display: inline-block; /* Make the container fit the button */
+        font-size: 16px; /* Increase font size */
+        margin: 4px 2px; /* Some margin */
+        cursor: pointer; /* Pointer/hand icon */
+        border-radius: 12px; /* Rounded corners */
+        }
+        #customerButton:hover {
+            background-color: #007f45; /* Darker green */
+        }
+    </style>
+  </head>
+  <body>
+  <nav>
+    <div class="logo">
+    <a href="homepage.php"><img src="image/Logo new 2.png" alt="Logo" /></a>
+    </div>
+    <div class="links">
+      <ul>
+        <li class="home"><a href="homepage.php">Home</a></li>
+        <li class="map"><a href="map.php">Map</a></li>
+        <li class="calendar"><a href="calendar.php">Reservation</a></li>
+        <li class="customerservice"><a href="customerservice.php">Customer Service</a></li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <button class="dropbtn">
+        <div class="profile-info">
+          <span><?php echo htmlspecialchars($username); ?>'s Account</span>
+        </div>
+      </button>
+      <div class="dropdown-content">
+        <a href="history.php">History</a>
+        <a href="logout.php">Logout</a>
+      </div>
+    </div>
+  </nav>
+    <div class="main_body">
+      <div class="title">
+        <h1>Olivarez College Tagaytay</h1>
+        <h2>School Map</h2>
+        <div class="dropdownmap">
+          <button class="dropbtnmap">School Floor</button>
+          <div class="dropdown-contentmap">
+            <a href="groundfloor.php">Ground Floor</a>
+            <a href="secondfloor.php">Second Floor</a>
+            <a href="thirdfloor.php">Third Floor</a>
+          </div>
+        </div>
+      </div>
+      <div class="image_container">
+        <img src="image/3d_School-removebg-preview.png" alt="Image" />
+      </div>
+    </div>
+  </body>
+</html>

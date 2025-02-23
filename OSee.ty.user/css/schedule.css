@@ -1,0 +1,114 @@
+/* Base styles */
+body {
+    color: #007f45;
+    font-family: "Karla", sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(1, 50, 5);
+  }
+  
+  .logo img {
+    width: 200px; /* Adjust as needed */
+  }
+  
+  .calendar a {
+    color: #007f45;
+    font-weight: bold;
+  }
+  
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li {
+    display: inline-block;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: color 0.5s; /* Changed transition property */
+    color: #ffffff; /* Change text color to white */
+  }
+  
+  nav ul li a:hover {
+    color: #007f45;
+  }
+  
+  /* Dropdown button styles */
+  .dropdown {
+    position: relative; /* Changed float to position */
+  }
+  
+  .dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 20px;
+    background-color: inherit;
+    margin: 0;
+    cursor: pointer; /* Added cursor pointer */
+  }
+  
+  /* Dropdown content */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    min-width: 160px;
+    z-index: 1;
+    top: 100%; /* Added to position below the button */
+  }
+  .dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s; /* Added transition for smooth hover effect */
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #007f45; /* Changed hover background color */
+    color: white; /* Ensuring text color remains white */
+  }
+  
+  /* Show the dropdown content on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* Profile info styles */
+  .profile-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile-info img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  /* Adjusting positioning of links */
+  .links {
+    margin-left: auto; /* Pushes the links to the right */
+  }
+  
+  /* Caption styles */
+  .caption {
+    font-size: 50px; /* Adjust the font size as needed */
+  }
+  
+  

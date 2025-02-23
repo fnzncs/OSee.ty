@@ -1,0 +1,190 @@
+/* Global styles and resets */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "century-gothic",  sans-serif;
+  background-color: #f4f4f4; /* Light background for the page */
+}
+
+.history{
+  background-image: url('../image/logowm.png'); /* Replace with your actual image path */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+}
+.contents {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: rgb(0, 0, 0);
+    padding: 20px;
+    width: 100%; /* Ensures full width */
+    text-align: center; /* Centers text */
+}
+
+/* Navbar styles */
+nav {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(1, 50, 5);
+}
+
+nav .logo img {
+  width: 200px; /* Adjust as needed */
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin: 10px 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: 0.5s;
+  color: rgb(255, 255, 255);
+}
+
+nav ul li a:hover, nav ul li a.active {
+  color: #4caf4f; /* Change color of active and hover link */
+  animation: pulse 1s infinite alternate;
+}
+
+.links {
+  margin-left: auto; /* Pushes the links to the right */
+}
+
+/* Dropdown button styles */
+.dropdown {
+  position: relative; /* Changed float to position */
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 20px;
+  background-color: inherit;
+  margin: 0;
+  cursor: pointer; /* Added cursor pointer */
+}
+
+/* Dropdown content */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #333;
+  min-width: 160px;
+  z-index: 1;
+  top: 100%; /* Added to position below the button */
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s; /* Added transition for smooth hover effect */
+}
+
+.dropdown-content a:hover {
+  background-color: #007f45; /* Changed hover background color */
+  color: white; /* Ensuring text color remains white */
+}
+
+/* Show the dropdown content on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Table container styles */
+.table-container, .table-container2,.table-container3 {
+    display: auto;
+    justify-content: center; /* Centers the tables horizontally */
+    margin-top: 20px;
+    gap: 20px; /* Optional: Add space between the two tables */
+    width: 200%; /* Ensure the container takes up full width */
+    padding: 0 20px; /* Add padding to the sides to prevent the table touching edges */
+}
+
+.table, .table2, .table3 {
+  width: 48%; /* Adjust width for better spacing */
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add some shadow for visual appeal */
+    margin: 0 auto; /* Ensure the table itself is centered within its container */
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 12px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9; /* Add alternating row colors */
+}
+
+tr:hover {
+  background-color: #f1f1f1; /* Subtle hover effect on rows */
+}
+
+/* Bold text */
+.Bold {
+  font-weight: bold;
+  color: #0d0d0d;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .table-container, .table-container2 {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .table, .table2 {
+    width: 90%; /* Allow tables to use full width on smaller screens */
+    margin-bottom: 20px; /* Add spacing between tables */
+  }
+
+  nav ul {
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+  }
+}

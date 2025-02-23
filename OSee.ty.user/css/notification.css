@@ -1,0 +1,315 @@
+/* Base styles */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  .content {
+    border: 1px solid black;
+  }
+  
+  
+  
+  body {
+    /* color: #007f45; */
+    font-family: "Karla", sans-serif;
+  }
+  
+  nav {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(1, 50, 5);
+  }
+  
+  .logo img {
+    width: 200px; /* Adjust as needed */
+  }
+  
+  .home a {
+    color: #007f45;
+    font-weight: bold;
+  }
+  
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li {
+    display: inline-block;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: color 0.5s; /* Changed transition property */
+    color: #ffffff; /* Change text color to white */
+  }
+  
+  nav ul li a:hover {
+    color: #007f45;
+  }
+  
+  /* Dropdown button styles */
+  .dropdown {
+    position: relative; /* Changed float to position */
+  }
+  
+  .dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 20px;
+    background-color: inherit;
+    margin: 0;
+    cursor: pointer; /* Added cursor pointer */
+  }
+  
+  /* Dropdown content */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    min-width: 160px;
+    z-index: 1;
+    top: 100%; /* Added to position below the button */
+  }
+  .dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s; /* Added transition for smooth hover effect */
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #007f45; /* Changed hover background color */
+    color: white; /* Ensuring text color remains white */
+  }
+  
+  /* Show the dropdown content on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* Profile info styles */
+  .profile-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile-info img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  
+  /* MAIN CONTENT */
+  
+  .mainBanner {
+    display: flex;
+    gap: 10px;
+    height: 100dvh;
+  }
+  
+  .leftSide {
+    width: 70%;
+  }
+  
+  .titleRightSide{
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .rightSide {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* MARGIN BETWEEN ELEMENT */
+  }
+  
+  .midterm {
+    background-color: #007f45;
+    width: 60%;
+    color: white;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  
+  .holidays {
+    background-color: #007f45;
+    width: 60%;
+    color: white;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .calendarHighlights{
+    background-color: rgb(120, 196, 135);
+    width: 60%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+  }
+  
+  .highlightsDate{
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    color:  white;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+  }
+  .highlightsDate input{
+    border: none;
+    font-family: "Karla", sans-serif;
+    background: transparent;
+    pointer-events: none;
+    width: 35px;
+    margin-left: 50px;
+  }
+  .eventHighlights{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .eventChildren{
+    display: flex;
+    padding: 5px;
+  }
+  
+  .eventChildren p:nth-child(2){
+    display: flex;
+    justify-content: end;
+  }
+  
+  
+  .eventChildren p {
+    width: 50%;
+    display: flex;
+    justify-content: start;
+    color: #ffffff;
+  }
+  
+  .borderLine{
+    width: 100%;
+    border: 1px solid rgb(255, 255, 255);
+  }
+  
+  
+  /* END OF MAIN CONTENT */
+  
+  
+  
+  
+  /* Adjusting positioning of links */
+  .links {
+    margin-left: auto; /* Pushes the links to the right */
+  }
+  
+  
+  h2 {
+    margin-top: 0;
+  }
+  
+  /* User info styles */
+  .user-info {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  .user-info img {
+    width: 100px;
+    height: 100px;
+    border-radius: 5%;
+    margin-right: 10px;
+  }
+  
+  .welcome-message {
+    font-size: 34px;
+    font-weight: bold;
+    color: #007f45;
+  }
+  
+  .user-email {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 5px;
+  }
+  
+  .user-buttons button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007f45;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  /* Events styles */
+  .events {
+    margin: 20px;
+  }
+  
+  .event-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  
+  .event-name {
+    font-weight: bold;
+    color: #007f45;
+  }
+  
+  .event-date {
+    color: #666;
+  }
+  
+  /* Gallery styles */
+  /*.gallery {
+    margin: 20px;
+  }
+  
+  .scroll-gallery {
+    display: flex;
+    justify-content: center; 
+  }
+  
+  .scroll-gallery img {
+    width: 800px;
+    height: 250px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    display: none; !* Hide all images by default *!
+  }*/
+  
+  .scroll-gallery img:first-child {
+    display: block; /* Show the first image initially */
+  }
+  
