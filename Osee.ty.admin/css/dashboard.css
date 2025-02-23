@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "century-gothic",  sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    height: 100vh; /* Ensure body takes full height */
+}
+
+.wrapper {
+    display: flex;
+    justify-content: flex-start; /* Aligns items to the left (sidebar stays fixed) */
+    align-items: center; /* Vertically centers the content */
+    height: 100vh; /* Full viewport height */
+    position: relative;
+}
+
+#sidebar {
+    position: fixed;
+    height: 100vh; /* Full viewport height for the sidebar */
+    background: rgb(2, 41, 2);
+    width: 250px;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Sidebar behind the content */
+}
+
+.title {
+    color: white;
+    background-color: rgb(2, 41, 2);
+    text-align: center;
+    padding: 10px;
+}
+
+.title img {
+    width: 100%; /* Ensure the image covers the title */
+    max-width: 200px; /* Adjust as needed */
+    margin-bottom: 10px;
+}
+
+#sidebar .list-items {
+    list-style: none;
+}
+
+#sidebar .list-items li {
+    margin-left: -30px;
+    line-height: 50px;
+    border-top: 1px solid rgba(4, 42, 4, 0.1);
+    border-bottom: 1px solid black;
+    transition: all 0.3s ease;
+}
+
+#sidebar .list-items li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    display: block;
+    padding: 0 20px;
+}
+
+#sidebar .list-items li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.content {
+    margin-left: 250px; /* Prevent overlap with sidebar */
+    padding: 30px;
+    flex: 1; /* Makes content take up available space */
+    display: flex;
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+    flex-direction: column; /* Stack items vertically */
+    z-index: 2; /* Ensures content is on top of the sidebar */
+    margin-top: -200px; /* Shift content higher */
+    
+}
+
+.button-export {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative;
+    z-index: 3; /* Ensures the button is above other content */
+    margin-top: -80px; /* Add spacing between elements */
+}
+
+.button-export:hover {
+    background-color: #0056b3;
+}
+
+.button-export:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.button-export:active {
+    background-color: #0056b3;
+}
+
+.month {
+    margin-top: 20px; /* Adds space between the top and the month header */
+    z-index: 2;
+    position: relative;
+}
+
+/* Adjustments for the calendar view or month picker */
+.calendar {
+    margin-top: 20px; /* Ensure month selector isn't hidden */
+}

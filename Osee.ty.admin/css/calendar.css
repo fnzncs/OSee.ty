@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "century-gothic",  sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.wrapper {
+    height: 100%;
+    display: flex;
+    position: relative;
+}
+
+#sidebar {
+    position: fixed;
+    height: 100%;
+    background: rgb(2, 41, 2);
+    width: 250px; /* Adjust as needed */
+    z-index: 10; /* Ensure sidebar stays behind the content */
+}
+
+.title {
+    color: white;
+    height: auto;
+    background-color: rgb(2, 41, 2);
+    text-align: center;
+    padding: 10px;
+}
+
+.title img {
+    width: 100%; /* Ensure the image covers the title */
+    max-width: 200px; /* Adjust as needed */
+    margin-bottom: 10px;
+}
+
+#sidebar .list-items {
+    list-style: none;
+}
+
+#sidebar .list-items li {
+    margin-left: -30px;
+    line-height: 50px;
+    border-top: 1px solid rgba(4, 42, 4, 0.1);
+    border-bottom: 1px solid black;
+    transition: all 0.3s ease;
+}
+
+#sidebar .list-items li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    display: block;
+    padding: 0 20px;
+}
+
+#sidebar .list-items li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.content {
+    padding: 30px;
+    margin-left: 250px; /* Ensure content doesn't overlap with sidebar */
+    z-index: 1; /* Ensure content is above the sidebar */
+    position: relative;
+}
+
+.button-export {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative;
+    z-index: 2; /* Ensure button stays above content */
+}
+
+.button-export:hover {
+    background-color: #0056b3;
+}
+
+.button-export:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.button-export:active {
+    background-color: #0056b3;
+}
+
+/* Ensures month header or similar elements aren't covered by sidebar */
+.month {
+    margin-top: 30px; /* Adds space at the top if necessary */
+    z-index: 2;
+    position: relative;
+}

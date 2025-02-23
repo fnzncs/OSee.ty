@@ -1,0 +1,194 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "century-gothic",  sans-serif;
+}
+
+.wrapper {
+  height: 100%;
+}
+
+#sidebar {
+  position: fixed;
+  height: 100%;
+  background: rgb(2, 41, 2);
+  width: 250px; /* Adjust as needed */
+}
+
+.title {
+  color: white;
+  height: auto;
+  text-align: center;
+  padding: 10px;
+}
+
+.title img {
+  width: 100%; /* Ensure the image covers the title */
+  max-width: 200px; /* Adjust as needed */
+  margin-bottom: 10px;
+}
+
+#sidebar .list-items {
+  list-style: none;
+}
+
+#sidebar .list-items li {
+  line-height: 50px;
+  border-top: 1px solid rgba(4, 42, 4, 0.1);
+  border-bottom: 1px solid black;
+  transition: all 0.3s ease;
+}
+
+#sidebar .list-items li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  display: block;
+  padding: 0 20px;
+}
+
+#sidebar .list-items li a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.content {
+  padding: 30px;
+  margin-left: 225px; /* Ensure content doesn't overlap with sidebar */
+}
+
+/* CSS for dropdown */
+.dropdownmap {
+  margin-right: 20px;
+}
+
+.dropbtnmap {
+  background-color: #007f45;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: -270px;
+}
+
+.dropbtnmap:hover,
+.dropbtnmap:focus {
+  background-color: #005b2a;
+}
+
+.dropdown-contentmap {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+} 
+
+.dropdown-contentmap a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-contentmap a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdownmap:hover .dropdown-contentmap {
+  display: block;
+}
+
+/* CSS for main body */
+.main_body {
+  display: flex;
+  padding: 30px;
+  margin-left: 250px;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+}
+
+.title h1 {
+  margin-bottom: 5px;
+  font-size: 30px;
+  color: rgb(13, 13, 13);
+  font-weight: bold;
+}
+
+.title h2 {
+  margin-top: 0;
+  color: rgb(13, 13, 13);
+  font-weight: bold;
+  font-size: 24px;
+  margin-left: -240px;
+}
+
+.image_container {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.image_container img {
+  width: 700px;
+  height: auto;
+}
+/* Report styles */
+.report {
+  margin: 10px auto;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 500px; /* Adjusted for smaller size */
+  width: 100%; /* Make the report containers responsive */
+}
+
+.report h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Specific report styles for weekly, monthly, and daily reports */
+.weekly_report, .monthly_report, .daily_report {
+  margin: 10px auto;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 500px; /* Adjusted for smaller size */
+}
+
+.weekly_report h3, .monthly_report h3, .daily_report h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .main_body {
+      flex-direction: column;
+      padding: 10px;
+  }
+
+  .report, .weekly_report, .monthly_report, .daily_report {
+      max-width: 100%; /* Full width on smaller screens */
+  }
+
+  .image_container img {
+      width: 100%; /* Full width on smaller screens */
+  }
+}

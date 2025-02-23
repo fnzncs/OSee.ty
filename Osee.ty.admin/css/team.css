@@ -1,0 +1,64 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "century-gothic",  sans-serif;
+}
+
+.wrapper {
+    height: 100%;
+    display: flex;
+}
+
+#sidebar {
+    position: fixed;
+    height: 100%;
+    background: rgb(2, 41, 2);
+    width: 250px; /* Adjust as needed */
+}
+
+.title {
+    color: white;
+    height: auto;
+    background-color: rgb(2, 41, 2);
+    text-align: center;
+    padding: 10px;
+}
+
+.title img {
+    width: 100%; /* Ensure the image covers the title */
+    max-width: 200px; /* Adjust as needed */
+    margin-bottom: 10px;
+}
+
+#sidebar .list-items {
+    list-style: none;
+}
+
+#sidebar .list-items li {
+    line-height: 50px;
+    border-top: 1px solid rgba(4, 42, 4, 0.1);
+    border-bottom: 1px solid black;
+    transition: all 0.3s ease;
+}
+
+#sidebar .list-items li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    display: block;
+    padding: 0 20px;
+}
+
+#sidebar .list-items li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.content {
+    padding: 30px;
+    margin-left: 250px; /* Ensure content doesn't overlap with sidebar */
+}
