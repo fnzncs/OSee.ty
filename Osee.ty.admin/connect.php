@@ -2,7 +2,7 @@
 session_start();
 $server = "localhost"; 
 $db_user = "root"; 
-$db_pass = "mysql123";
+$db_pass = "";
 $db_name = "oseety_db"; 
 
 $conn = new mysqli($server, $db_user, $db_pass, $db_name);
