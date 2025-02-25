@@ -68,7 +68,7 @@ $company_name = isset($company_name_labels[$company_name]) ? $company_name_label
 if(empty($id)){
     if (hasConflict($conn, $venue, $start_datetime, $end_datetime)) {
         $conflict_status = 'Accepted with Conflict';
-        echo "<script> alert('Note: The selected venue has existing bookings for the chosen date. Your schedule has been saved as Accepted with Conflict.'); </script>";
+        echo "<script> alert('Note: The selected venue has existing bookings for the chosen date. Your schedule has been Cancelled.'); location.replace('calendar.php') </script>";
     } else {
         $conflict_status = 'Pending';
     }
@@ -77,7 +77,6 @@ if(empty($id)){
 } else {
     if (hasConflict($conn, $venue, $start_datetime, $end_datetime, $id)) {
         $conflict_status = 'Accepted with Conflict';
-        echo "<script> alert('Note: The selected venue has existing bookings for the chosen date. Your schedule has been updated as Accepted with Conflict.'); </script>";
     } else {
         $conflict_status = 'Pending';
     }
@@ -88,9 +87,11 @@ if(empty($id)){
 $save = $conn->query($sql);
 
 if($save){
-    include 'send_email.php';
-    sendBookingEmail($fullname, $email, $company_name, $title, $venue, $description, $start_datetime, $end_datetime, $conflict_status);
-    echo "<script> alert('Schedule Successfully Saved.'); location.replace('calendar.php') </script>";
+    if ($conflict_status !== 'Accepted with Conflict') {
+        include 'send_email.php';
+        sendBookingEmail($fullname, $email, $company_name, $title, $venue, $description, $start_datetime, $end_datetime, $conflict_status);
+        echo "<script> alert('Schedule Successfully Saved.'); location.replace('calendar.php') </script>";
+    }
 } else {
     echo "<pre>";
     echo "An Error occurred.<br>";
