@@ -5,7 +5,7 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-require_once 'database/connection.php'; // Adjust this path to your actual DB connection
+require_once './database/connection.php'; // Adjust this path to your actual DB connection
 
 header("Content-Type: application/vnd.ms-excel");
 header("Content-Disposition: attachment; filename=AMPI_THEATER_Booking_Report.xls");

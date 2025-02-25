@@ -108,6 +108,13 @@ if (!isset($_SESSION['username'])) {
             <div class="report daily_report">
                 <h3>Booking Report</h3>
                 <div id="opencourt_status_chart" style="width: 100%; height: 500px;"></div>
+
+                <form action="/Osee.ty.admin/export/export_open_court.php" method="POST" style="margin-top: 20px;">
+                    <input type="hidden" name="venue" value="open_court"> 
+                    <button type="submit" style="padding: 10px 20px; background: #4CAF50; color: white; border: none; cursor: pointer;">
+                        Export to Excel
+                    </button>
+                </form>
             </div>
             <div class="report weekly_report">
                 <h3>Weekly Report</h3>
