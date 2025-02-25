@@ -1,7 +1,7 @@
 <?php 
 require_once('configdb.php');
 
-if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+if($_SERVER['REQUEST_METHOD'] != 'POST'){
     echo "<script> alert('Error: No data to save.'); location.replace('./') </script>";
     $conn->close();
     exit;
@@ -16,8 +16,7 @@ function hasConflict($conn, $venue, $start_datetime, $end_datetime, $id = null) 
     $sql = "SELECT * FROM `schedule_list` 
             WHERE `venue` = ? 
             AND DATE(`start_datetime`) = ?
-            AND DATE(`end_datetime`) = ?
-            AND `status` = 'Accepted'"; // Only check for "Accepted" bookings
+            AND DATE(`end_datetime`) = ?";
 
     if ($id) {
         $sql .= " AND `id` != ?";
@@ -36,20 +35,22 @@ function hasConflict($conn, $venue, $start_datetime, $end_datetime, $id = null) 
 }
 
 $allday = isset($allday);
-$status = 'Pending'; // Default status
 
-// Venue labels mapping
+// Set status to 'Pending' for new bookings
+$status = 'Pending';
+
+// Mapping enum values to human-readable labels
 $venue_labels = [
     'Open Court' => 'Open Court',
     'AVR' => 'AVR',
     'Gym' => 'Gym',
     'Convention' => 'Convention',
-    'Ampi-Theater' => 'Ampi-Theater'
+    'Ampi-Theater' => 'Ampi-Theater'  // Ensure it matches exactly
 ];
 
 $venue = isset($venue_labels[$venue]) ? $venue_labels[$venue] : $venue;
 
-// Company name labels mapping
+// Mapping enum values to human-readable labels
 $company_name_labels = [
     'BSIT' => 'BSIT',
     'BSN' => 'BSN',
@@ -65,40 +66,54 @@ $company_name_labels = [
 $company_name = isset($company_name_labels[$company_name]) ? $company_name_labels[$company_name] : $company_name;
 
 if (empty($id)) {
-    // Check for "Accepted" conflicts before inserting
-    if (hasConflict($conn, $venue, $start_datetime, $end_datetime)) {
+    // ✅ 1. Check if there is an existing "Accepted" conflict
+    if (hasConflict($conn, $venue, $start_datetime, $end_datetime, "Accepted")) {
         echo "<script> alert('Error: The selected venue is already booked with an Accepted status. Your appointment has been canceled.'); location.replace('calendar.php') </script>";
         $conn->close();
         exit;
     }
 
-    // Original insert logic
+    // ✅ 2. Check if there is an existing "Pending" conflict (but allow submission)
+    if (hasConflict($conn, $venue, $start_datetime, $end_datetime, "Pending")) {
+        echo "<script> alert('Warning: Another booking is already pending for this date and venue. Your appointment has been submitted for review.');</script>";
+    }
+
+    // Insert new booking
     $sql = "INSERT INTO `schedule_list`(`fullname`, `email`, `company_name`, `title`, `venue`, `description`, `start_datetime`, `end_datetime`, `status`) 
             VALUES ('$fullname','$email','$company_name','$title','$venue','$description','$start_datetime','$end_datetime', '$status')";
 } else {
-    // Check for "Accepted" conflicts before updating
-    if (hasConflict($conn, $venue, $start_datetime, $end_datetime, $id)) {
-        echo "<script> alert('Error: The selected venue is already booked with an Accepted status. Your appointment cannot be updated.'); location.replace('calendar.php') </script>";
+    // ✅ 3. Check if there is an existing "Accepted" conflict before updating
+    if (hasConflict($conn, $venue, $start_datetime, $end_datetime, "Accepted", $id)) {
+        echo "<script> alert('Error: The selected venue is already booked with an Accepted status. Your update has been canceled.'); location.replace('calendar.php') </script>";
         $conn->close();
         exit;
     }
 
-    // Original update logic
+    // ✅ 4. Check if there is an existing "Pending" conflict before updating (but allow update)
+    if (hasConflict($conn, $venue, $start_datetime, $end_datetime, "Pending", $id)) {
+        echo "<script> alert('Warning: Another booking is already pending for this date and venue. Your update has been submitted for review.');</script>";
+    }
+
+    // Update existing booking
     $sql = "UPDATE `schedule_list` SET `fullname`='$fullname',`email`='$email',`company_name`='$company_name',`title`='$title',`venue`='$venue',`description`='$description',`start_datetime`='$start_datetime',`end_datetime`='$end_datetime', `status`='$status' WHERE `id` = '$id'";
 }
 
 $save = $conn->query($sql);
 
-if ($save) {
+if($save){
+    // Include the email notification script
     include 'send_email.php';
+
+    // Call the function to send email
     sendBookingEmail($fullname, $email, $company_name, $title, $venue, $description, $start_datetime, $end_datetime, $status);
 
     echo "<script> alert('Schedule Successfully Saved.'); location.replace('calendar.php') </script>";
-} else {
+}
+ else {
     echo "<pre>";
     echo "An Error occurred.<br>";
-    echo "Error: " . $conn->error . "<br>";
-    echo "SQL: " . $sql . "<br>";
+    echo "Error: ".$conn->error."<br>";
+    echo "SQL: ".$sql."<br>";
     echo "</pre>";
 }
 
