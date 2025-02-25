@@ -146,7 +146,7 @@ if (!isset($_SESSION['username'])) {
     <div class="modal-content">
         <span class="close" onclick="closeModal('holidaysModal')">&times;</span>
         <h2>Edit Holiday</h2>
-        <form id="holidayForm">
+        <form id="holidayForm" action="update_holidays.php" method="POST" class="form-modal">
             <input type="hidden" id="holiday_id" name="id">
             <table>
                 <tr>
