@@ -114,6 +114,9 @@ if (!isset($_SESSION['username'])) {
                 <h3>Monthly Report</h3>
                 <div id="ampi-theater_monthly_chart" style="width: 100%; height: 500px;"></div>
             </div>
+            <form action="export_ampi_theater.php" method="POST">
+                <button type="submit">Export to Excel</button>
+            </form>
         </div>
     </div>
 </body>

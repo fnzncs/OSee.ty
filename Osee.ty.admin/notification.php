@@ -43,7 +43,7 @@ if (!isset($_SESSION['username'])) {
                         <th>Start Date</th>
                         <th>End Date</th>
                         <th>Event Venue</th>
-                        <th>Reason of Cancellation</th>
+                        <th>Information of Event</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
