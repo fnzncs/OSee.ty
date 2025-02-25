@@ -1,5 +1,5 @@
 <?php
-require './connect/conn_exam.php';
+require './connect/conn_school_calendar.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if ID exists and is not empty

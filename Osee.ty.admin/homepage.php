@@ -93,7 +93,8 @@ if (!isset($_SESSION['username'])) {
     <div class="modal-content">
         <span class="close" onclick="closeModal('midtermModal')">&times;</span>
         <h2>Edit Semester Examination</h2>
-        <form id="examScheduleForm" action="update_exam.php" method="POST" class="form-modal">
+        
+        <form id="examScheduleForm">
             <input type="hidden" id="exam_id" name="id">
             <table>
                 <tr>
@@ -133,13 +134,12 @@ if (!isset($_SESSION['username'])) {
                     </td>
                 </tr>
             </table>
-            <button type="button"
-                    class="modal-btn"
-                    onclick="saveExamSchedule()">Save Changes
-            </button>
+            
+            <button type="button" class="modal-btn" onclick="saveExamSchedule()">Save Changes</button>
         </form>
     </div>
 </div>
+
 
 <!-- Holiday Modal -->
 <div id="holidaysModal" class="modal">
@@ -169,44 +169,53 @@ if (!isset($_SESSION['username'])) {
     /* FOR MODAL FUNCTION*/
 
     function openExamModal(examData) {
-        document.getElementById("exam_id").value = examData.id;
-        document.getElementById("semester").value = examData.semester;
-        document.getElementById("exam_type").value = examData.exam_type;
-        document.getElementById("start_date").value = examData.start_date;
-        document.getElementById("end_date").value = examData.end_date;
-        document.getElementById("year_level").value = examData.year_level;
+    console.log("Exam Data Received:", examData); // Debugging
 
-        openModal("midtermModal");
+    if (!examData.id) {
+        console.error("Error: Missing exam ID!");
+        return;
     }
+
+    document.getElementById("exam_id").value = examData.id;
+    document.getElementById("semester").value = examData.semester;
+    document.getElementById("exam_type").value = examData.exam_type;
+    document.getElementById("start_date").value = examData.start_date;
+    document.getElementById("end_date").value = examData.end_date;
+    document.getElementById("year_level").value = examData.year_level;
+
+    openModal("midtermModal");
+    }
+
 
     function saveExamSchedule() {
-        const exam_id = document.getElementById("exam_id").value;
-        const semester = document.getElementById("semester").value;
-        const exam_type = document.getElementById("exam_type").value; // FIXED
-        const start_date = document.getElementById("start_date").value; // FIXED
-        const end_date = document.getElementById("end_date").value; // FIXED
-        const year_level = document.getElementById("year_level").value; // FIXED
+    const id = document.getElementById("exam_id").value; // Make sure it's the same name as in PHP
+    console.log("ID before submission:", id); // Debugging
 
-        // Validate input
-        if (!exam_id || !semester || !exam_type || !start_date || !end_date || !year_level) {
-            alert("All fields are required.");
-            return;
-        }
-
-        fetch("update_exam.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `id=${exam_id}&semester=${semester}&exam_type=${exam_type}&start_date=${start_date}&end_date=${end_date}&year_level=${year_level}`
-        })
-            .then(response => response.text())
-            .then(data => {
-                alert(data); // Show success/error message
-                location.reload(); // Refresh page after update
-            })
-            .catch(error => console.error("Error:", error));
+    if (!id) {
+        alert("Error: Exam ID is missing!");
+        return;
     }
+
+    const semester = document.getElementById("semester").value;
+    const exam_type = document.getElementById("exam_type").value;
+    const start_date = document.getElementById("start_date").value;
+    const end_date = document.getElementById("end_date").value;
+    const year_level = document.getElementById("year_level").value;
+
+    fetch("update_exam.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `id=${id}&semester=${semester}&exam_type=${exam_type}&start_date=${start_date}&end_date=${end_date}&year_level=${year_level}`
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log("Server Response:", data);
+        alert(data);
+        location.reload();
+    })
+    .catch(error => console.error("Error:", error));
+}
+
 
     // Open Holiday Modal and populate fields
     function openHolidayModal(holidayData) {

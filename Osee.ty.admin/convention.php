@@ -106,7 +106,7 @@ if (!isset($_SESSION['username'])) {
                 <h3>Booking Report</h3>
                 <div id="convention_status_chart" style="width: 100%; height: 500px;"></div>
 
-                <form action="/Osee.ty.admin/export/export_convention.php" method="POST" style="margin-top: 20px;">
+                <form action="./export/export_convention.php" method="POST" style="margin-top: 20px;">
                     <input type="hidden" name="venue" value="convention"> 
                     <button type="submit" style="padding: 10px 20px; background: #4CAF50; color: white; border: none; cursor: pointer;">
                         Export to Excel

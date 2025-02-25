@@ -1,7 +1,10 @@
 <?php
-require './connect/conn_exam.php';
+require './connect/conn_school_calendar.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Log received data
+    file_put_contents("debug_log.txt", json_encode($_POST) . PHP_EOL, FILE_APPEND);
+
     if (!isset($_POST['id']) || empty($_POST['id'])) {
         die("Error: Missing or invalid 'id'. Received: " . json_encode($_POST));
     }
@@ -27,5 +30,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error updating exam schedule.";
     }
 }
-
 ?>
