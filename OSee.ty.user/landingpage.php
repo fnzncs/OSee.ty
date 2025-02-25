@@ -72,9 +72,8 @@
           <h2>Franz Naces</h2>
           <p>Full-Stack Developer</p>
           <div class="social-icons">
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="https://facebook.com/FranzKennethNaces21" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="mailto:franzkenneth.naces@olivarezcollege.edu.ph"><i class="fa fa-envelope"></i></a>
           </div>
         </div>
         <div class="card">
@@ -82,9 +81,8 @@
           <h2>Emmanuel Salvacion</h2>
           <p>Back-End Developer</p>
           <div class="social-icons">
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="https://facebook.com/seisadkiddddd" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="mailto:emanueljoel.salvacion@olivarezcollege.edu.ph"><i class="fa fa-envelope"></i></a>
           </div>
         </div>
         <div class="card">
@@ -92,9 +90,8 @@
           <h2>King Dangilan</h2>
           <p>Front-End Developer</p>
           <div class="social-icons">
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="https://facebook.com/Conquerre28" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="mailto:kingjeremiah.dangilan@olivarezcollegetagaytay.edu.ph"><i class="fa fa-envelope"></i></a>
           </div>
         </div>
       </div>
@@ -104,9 +101,8 @@
           <h2>Vaughn de Sagun</h2>
           <p>Project Manager</p>
           <div class="social-icons">
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="https://facebook.com/vndesagun" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="mailto:vaughnnicolai.desagun@olivarezcollege.edu.ph"><i class="fa fa-envelope"></i></a>
           </div>
         </div>
         <div class="card">
@@ -114,19 +110,17 @@
           <h2>Matthew Bueno</h2>
           <p>Capstone Adviser</p>
           <div class="social-icons">
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/share/12De3K6Xewt/" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="mailto:matthew.bueno@olivarezcollegetagaytay.edu.ph"><i class="fa fa-envelope"></i></a>
           </div>
         </div>
         <div class="card">
           <img src="image/Ainah.jpg" />
           <h2>Ainah Uziel</h2>
-          <p>Test Manager</p>
+          <p>Quality Assurance</p>
           <div class="social-icons">
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/share/1BVxtCXHHh/?mibextid=wwXIfr" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="mailto:ainahuziel.cielos@olivarezcollege.edu.ph"><i class="fa fa-envelope"></i></a>
           </div>
         </div>
       </div>
