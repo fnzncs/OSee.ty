@@ -1,22 +1,25 @@
 <?php
 require './connect/conn_school_calendar.php';
 
+// Log received POST data
+file_put_contents("debug_holiday_log.txt", json_encode($_POST) . PHP_EOL, FILE_APPEND);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Check if ID exists and is not empty
-    if (!isset($_POST['id']) || empty($_POST['id'])) {
+    // Log request method
+    file_put_contents("debug_holiday_log.txt", "Request Method: " . $_SERVER["REQUEST_METHOD"] . PHP_EOL, FILE_APPEND);
+
+    if (!isset($_POST['id']) || empty(trim($_POST['id']))) {
         die("Error: Missing or invalid 'id'. Received: " . json_encode($_POST));
     }
 
-    $id = $_POST['id'];
-    $holiday_name = $_POST['holiday_name'];
-    $holiday_date = $_POST['holiday_date'];
+    $id = trim($_POST['id']);
+    $holiday_name = trim($_POST['holiday_name']);
+    $holiday_date = trim($_POST['holiday_date']);
 
-    // Prevent empty values
     if (empty($holiday_name) || empty($holiday_date)) {
-        die("All fields are required.");
+        die("All fields are required. Received: " . json_encode($_POST));
     }
 
-    // Update the holiday in the database
     $query = "UPDATE holidays SET holiday_name=?, holiday_date=? WHERE id=?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("ssi", $holiday_name, $holiday_date, $id);

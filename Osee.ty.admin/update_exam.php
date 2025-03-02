@@ -2,8 +2,8 @@
 require './connect/conn_school_calendar.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Log received data
-    file_put_contents("debug_log.txt", json_encode($_POST) . PHP_EOL, FILE_APPEND);
+    // Debugging: Log received data
+    file_put_contents("debug_log.txt", "Received POST data: " . json_encode($_POST) . PHP_EOL, FILE_APPEND);
 
     if (!isset($_POST['id']) || empty($_POST['id'])) {
         die("Error: Missing or invalid 'id'. Received: " . json_encode($_POST));
@@ -20,6 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("All fields are required. Received: " . json_encode($_POST));
     }
 
+    // Prepare and execute the query
     $query = "UPDATE examinations SET semester=?, exam_type=?, start_date=?, end_date=?, year_level=? WHERE id=?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("sssssi", $semester, $exam_type, $start_date, $end_date, $year_level, $id);

@@ -93,9 +93,8 @@ if (!isset($_SESSION['username'])) {
     <div class="modal-content">
         <span class="close" onclick="closeModal('midtermModal')">&times;</span>
         <h2>Edit Semester Examination</h2>
-        
         <form id="examScheduleForm">
-            <input type="hidden" id="exam_id" name="id">
+            <input type="hidden" id="id" name="id">
             <table>
                 <tr>
                     <th>Semester</th>
@@ -106,24 +105,24 @@ if (!isset($_SESSION['username'])) {
                 </tr>
                 <tr>
                     <td>
-                        <select id="semester" name="semester" required>
+                        <select id="semester" name="semester">
                             <option value="">-----</option>
                             <option value="First">First Semester</option>
                             <option value="Second">Second Semester</option>
                         </select>
                     </td>
                     <td>
-                        <select id="exam_type" name="exam_type" required>
+                        <select id="exam_type" name="exam_type">
                             <option value="">-----</option>
                             <option value="Preliminary">Preliminary</option>
                             <option value="Midterm">Midterm</option>
                             <option value="Finals">Finals</option>
                         </select>
                     </td>
-                    <td><input type="date" id="start_date" name="start_date" required></td>
-                    <td><input type="date" id="end_date" name="end_date" required></td>
+                    <td><input type="date" id="start_date" name="start_date"></td>
+                    <td><input type="date" id="end_date" name="end_date" ></td>
                     <td>
-                        <select id="year_level" name="year_level" required>
+                        <select id="year_level" name="year_level" >
                             <option value="">-----</option>
                             <option value="All Level">All Level</option>
                             <option value="Freshman">Freshman</option>
@@ -134,7 +133,6 @@ if (!isset($_SESSION['username'])) {
                     </td>
                 </tr>
             </table>
-            
             <button type="button" class="modal-btn" onclick="saveExamSchedule()">Save Changes</button>
         </form>
     </div>
@@ -147,15 +145,15 @@ if (!isset($_SESSION['username'])) {
         <span class="close" onclick="closeModal('holidaysModal')">&times;</span>
         <h2>Edit Holiday</h2>
         <form id="holidayForm" action="update_holidays.php" method="POST" class="form-modal">
-            <input type="hidden" id="holiday_id" name="id">
+            <input type="hidden" id="id" name="id">
             <table>
                 <tr>
                     <th>Holiday Name</th>
                     <th>Holiday Date</th>
                 </tr>
                 <tr>
-                    <td><input type="text" id="holiday_name" name="holiday_name" required></td>
-                    <td><input type="date" id="holiday_date" name="holiday_date" required></td>
+                    <td><input type="text" id="holiday_name" name="holiday_name"></td>
+                    <td><input type="date" id="holiday_date" name="holiday_date"></td>
                 </tr>
             </table>
 
@@ -176,7 +174,7 @@ if (!isset($_SESSION['username'])) {
         return;
     }
 
-    document.getElementById("exam_id").value = examData.id;
+    document.getElementById("id").value = examData.id;
     document.getElementById("semester").value = examData.semester;
     document.getElementById("exam_type").value = examData.exam_type;
     document.getElementById("start_date").value = examData.start_date;
@@ -186,21 +184,20 @@ if (!isset($_SESSION['username'])) {
     openModal("midtermModal");
     }
 
-
     function saveExamSchedule() {
-    const id = document.getElementById("exam_id").value; // Make sure it's the same name as in PHP
-    console.log("ID before submission:", id); // Debugging
-
-    if (!id) {
-        alert("Error: Exam ID is missing!");
-        return;
-    }
-
+    const id = document.getElementById("exam_id").value;
     const semester = document.getElementById("semester").value;
     const exam_type = document.getElementById("exam_type").value;
     const start_date = document.getElementById("start_date").value;
     const end_date = document.getElementById("end_date").value;
     const year_level = document.getElementById("year_level").value;
+
+    console.log("Exam Data Before Submission:", {id, semester, exam_type, start_date, end_date, year_level}); // Debugging
+
+    if (!id || !semester || !exam_type || !start_date || !end_date || !year_level) {
+        alert("All fields are required.");
+        return;
+    }
 
     fetch("update_exam.php", {
         method: "POST",
@@ -216,44 +213,57 @@ if (!isset($_SESSION['username'])) {
     .catch(error => console.error("Error:", error));
 }
 
-
     // Open Holiday Modal and populate fields
     function openHolidayModal(holidayData) {
-        // Set values in the form
-        document.getElementById("holiday_id").value = holidayData.id;
-        document.getElementById("holiday_name").value = holidayData.holiday_name;
-        document.getElementById("holiday_date").value = holidayData.holiday_date;
+    console.log("Received Holiday Data:", holidayData); // Debugging
 
-        openModal("holidaysModal"); // Open the modal
+    if (!holidayData || !holidayData.id) {
+        console.error("Missing holiday ID!");
+        alert("Error: Missing holiday ID!");
+        return;
+    }
+
+    document.getElementById("id").value = holidayData.id;
+    document.getElementById("holiday_name").value = holidayData.holiday_name;
+    document.getElementById("holiday_date").value = holidayData.holiday_date;
+
+    console.log("Modal Input Values:", {
+        id: document.getElementById("id").value,
+        holiday_name: document.getElementById("holiday_name").value,
+        holiday_date: document.getElementById("holiday_date").value
+    });
+
+    openModal("holidaysModal");
     }
 
     // Save holiday changes (send update request)
     function saveHoliday() {
-        const holiday_id = document.getElementById("holiday_id").value;
-        const holiday_name = document.getElementById("holiday_name").value;
-        const holiday_date = document.getElementById("holiday_date").value;
+    const id = document.getElementById("id").value.trim();
+    const holiday_name = document.getElementById("holiday_name").value.trim();
+    const holiday_date = document.getElementById("holiday_date").value.trim();
 
-        // Validate input
-        if (!holiday_id || !holiday_name || !holiday_date) {
-            alert("All fields are required.");
-            return;
-        }
+    console.log("Saving Holiday Data:", { id, holiday_name, holiday_date });
 
-        // Send data to update_holiday.php
-        fetch("update_holiday.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `id=${holiday_id}&holiday_name=${holiday_name}&holiday_date=${holiday_date}`
-        })
-            .then(response => response.text())
-            .then(data => {
-                alert(data); // Show success/error message
-                location.reload(); // Refresh page after update
-            })
-            .catch(error => console.error("Error:", error));
+    if (!id || !holiday_name || !holiday_date) {
+        alert("All fields are required.");
+        return;
     }
+
+    fetch("update_holidays.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `id=${id}&holiday_name=${holiday_name}&holiday_date=${holiday_date}`
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log("Server Response:", data);
+        alert(data);
+        location.reload();
+    })
+    .catch(error => console.error("Error:", error));
+    }
+
+
 
     function openModal(modalId) {
         document.getElementById(modalId).style.display = "block";
