@@ -50,7 +50,7 @@ nav {
 }
 
 nav .logo img {
-  width: 200px; /* Adjust as needed */
+  width: 200px;
 }
 
 nav ul {
@@ -71,12 +71,12 @@ nav ul li a {
 }
 
 nav ul li a:hover, nav ul li a.active {
-  color: #4caf4f; /* Change color of active and hover link */
+  color: #4caf4f;
   animation: pulse 1s infinite alternate;
 }
 
 .links {
-  margin-left: auto; /* Pushes the links to the right */
+  margin-left: auto;
 }
 
 /* Dropdown button styles */
@@ -131,7 +131,7 @@ nav ul li a:hover, nav ul li a.active {
   gap: 20px;
   width: 200%;
   padding: 0 20px;
-  flex-wrap: wrap; /* Ensures proper wrapping */
+  flex-wrap: wrap;
 }
 
 .table, .table2 {
