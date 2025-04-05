@@ -170,7 +170,7 @@ $stmt_company->close();
                             <?php
                                 }
                             } else {
-                                echo "<tr><td colspan='8'>No cancellation requests for your department</td></tr>";
+                                echo "<tr><td colspan='8'>No cancelled for your department</td></tr>";
                             }
                         } else { 
                             // This will run if $company_name is empty
