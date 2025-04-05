@@ -124,17 +124,17 @@ nav ul li a:hover, nav ul li a.active {
 }
 
 /* Table container styles */
-.table-container, .table-container2, .table-container3 {
+.table-container, .table-container2 {
   display: flex;
   justify-content: center;
   margin-top: 20px;
   gap: 20px;
-  width: 100%; /* Set to 100% to prevent horizontal scroll */
+  width: 200%;
   padding: 0 20px;
   flex-wrap: wrap; /* Ensures proper wrapping */
 }
 
-.table, .table2, .table3 {
+.table, .table2 {
   width: 48%;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -148,7 +148,7 @@ table {
 
 th, td {
   border: 1px solid #dddddd;
-  text-align: left;
+  text-align: center;
   padding: 12px;
 }
 
