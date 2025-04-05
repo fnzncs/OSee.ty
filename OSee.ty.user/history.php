@@ -12,7 +12,7 @@ $username = $_SESSION['user']['username'];
 
 $sql_company = "SELECT DISTINCT company_name FROM schedule_list WHERE company_name = ? 
                 UNION 
-                SELECT DISTINCT company_name FROM cancellation_requests WHERE company_name = ?";
+                SELECT DISTINCT company_name FROM processschedule_list WHERE company_name = ?";
 $stmt_company = $conn->prepare($sql_company);
 $stmt_company->bind_param("ss", $username, $username);
 $stmt_company->execute();
@@ -68,7 +68,7 @@ $stmt_company->close();
     <div class="contents">
         <div class="table-container">
             <div class="table">
-                <h2> Booking </h2>
+                <h2>Pending Booking </h2>
                 <table border="1">
                     <thead>
                         <tr>
@@ -130,7 +130,7 @@ $stmt_company->close();
 
         <div class="table-container2">
             <div class="table2">
-                <h2>Cancellation</h2>
+                <h2>Denied Booking</h2>
                 <table border="1">
                     <thead>
                         <tr>
@@ -140,14 +140,14 @@ $stmt_company->close();
                             <th>Start Date</th>
                             <th>End Date</th>
                             <th>Event Venue</th>
-                            <th>Cancellation Reason</th>
+                            <th>Event Details</th>
                             <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         if ($company_name) {
-                            $sql_cancellation = "SELECT * FROM `cancellation_requests` WHERE `status` = 'Request' AND `company_name` = ?";
+                            $sql_cancellation = "SELECT * FROM `processschedule_list` WHERE `status` = 'Cancelled' AND `company_name` = ?";
                             $stmt_cancel = $conn->prepare($sql_cancellation);
                             $stmt_cancel->bind_param('s', $company_name);
                             $stmt_cancel->execute();
@@ -158,14 +158,14 @@ $stmt_company->close();
                                     $venue_cancel = isset($venue_labels[$row_cancel['venue']]) ? $venue_labels[$row_cancel['venue']] : $row_cancel['venue']; 
                         ?>
                              <tr>
-                                <td><?php echo htmlspecialchars($row_cancel['title']); ?></td>
-                                <td><?php echo htmlspecialchars($row_cancel['fullname']); ?></td>
-                                <td><?php echo htmlspecialchars($row_cancel['company_name']); ?></td>
-                                <td><?php echo htmlspecialchars($row_cancel['start_datetime']); ?></td>
-                                <td><?php echo htmlspecialchars($row_cancel['end_datetime']); ?></td>
-                                <td><?php echo htmlspecialchars($venue_cancel); ?></td>
-                                <td><?php echo htmlspecialchars($row_cancel['reason']); ?></td>
-                                <td><?php echo htmlspecialchars($row_cancel['status']);?></td>
+                                <td><?php echo htmlspecialchars($row['title']); ?></td>
+                                <td><?php echo htmlspecialchars($row['fullname']); ?></td>
+                                <td><?php echo htmlspecialchars($row['company_name']); ?></td>
+                                <td><?php echo htmlspecialchars($row['start_datetime']); ?></td>
+                                <td><?php echo htmlspecialchars($row['end_datetime']); ?></td>
+                                <td><?php echo htmlspecialchars($venue); ?></td>
+                                <td><?php echo htmlspecialchars($row['description']); ?></td>
+                                <td><?php echo htmlspecialchars($row['status']); ?></td>
                             </tr>
                             <?php
                                 }
