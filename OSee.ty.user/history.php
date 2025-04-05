@@ -10,8 +10,7 @@ if (!isset($_SESSION['user'])) {
 require_once('./conn/conn.php');
 $username = $_SESSION['user']['username'];
 
-// Fetch company_name from processschedule_list or cancellation_requests based on logged-in username
-$sql_company = "SELECT DISTINCT company_name FROM processschedule_list WHERE company_name = ? 
+$sql_company = "SELECT DISTINCT company_name FROM schedule_list WHERE company_name = ? 
                 UNION 
                 SELECT DISTINCT company_name FROM cancellation_requests WHERE company_name = ?";
 $stmt_company = $conn->prepare($sql_company);
