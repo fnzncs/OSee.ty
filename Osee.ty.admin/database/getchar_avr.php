@@ -23,28 +23,29 @@ try {
 // Get the venue from the query parameter
 $venue = $_GET['venue'] ?? 'Avr';
 
-// Fetch data for daily, weekly, and monthly reports
-$dailyReport =  $pdo->prepare("SELECT status, COUNT(*) as count FROM historyschedule_list WHERE MONTH(start_datetime) = MONTH(CURRENT_DATE()) AND YEAR(start_datetime) = YEAR(CURRENT_DATE()) AND venue = ? GROUP BY status");
+// Fetch department (company_name) totals for the current month
+$dailyReport =  $pdo->prepare("SELECT company_name, COUNT(*) as count FROM historyschedule_list WHERE MONTH(start_datetime) = MONTH(CURRENT_DATE()) AND YEAR(start_datetime) = YEAR(CURRENT_DATE()) AND venue = ? GROUP BY company_name");
 $dailyReport->execute([$venue]);
 $dailyReportResults = $dailyReport->fetchAll();
 
+// Weekly Report (unchanged)
 $weeklyReport = $pdo->prepare("SELECT DATE(start_datetime) as date, COUNT(*) as count FROM processschedule_list WHERE WEEK(start_datetime) = WEEK(CURRENT_DATE()) AND venue = ? GROUP BY DATE(start_datetime)");
 $weeklyReport->execute([$venue]);
 $weeklyReportResults = $weeklyReport->fetchAll();
 
+// Monthly Report (unchanged)
 $monthlyReport = $pdo->prepare("SELECT DATE(start_datetime) as date, COUNT(*) as count FROM historyschedule_list WHERE MONTH(start_datetime) = MONTH(CURRENT_DATE()) AND YEAR(start_datetime) = YEAR(CURRENT_DATE()) AND venue = ? GROUP BY DATE(start_datetime)");
 $monthlyReport->execute([$venue]);
 $monthlyReportResults = $monthlyReport->fetchAll();
 
-$status = ['ACCEPTED', 'DENIED', 'CANCELLED'];
-$statusCounts = array_fill_keys($status, 0);
-
+// Convert department results into array format for chart
+$departmentCounts = [];
 foreach ($dailyReportResults as $row) {
-    $statusCounts[$row['status']] = $row['count'];
+    $departmentCounts[$row['company_name']] = $row['count'];
 }
 
 $data = [
-    'dailyReport' => $statusCounts,
+    'dailyReport' => $departmentCounts, // Now returns company_name => count
     'weeklyReport' => $weeklyReportResults,
     'monthlyReport' => $monthlyReportResults
 ];
