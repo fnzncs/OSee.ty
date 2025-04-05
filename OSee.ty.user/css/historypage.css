@@ -5,20 +5,21 @@
   padding: 0;
 }
 
-body, html {
+html, body {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
+  overflow: hidden; /* Remove both horizontal and vertical scrollbars */
 }
 
 body {
-  font-family: "century-gothic",  sans-serif;
+  font-family: "century-gothic", sans-serif;
   background-color: #f4f4f4; /* Light background for the page */
 }
 
-.history{
+.history {
   background-image: url('../image/logowm.png'); /* Replace with your actual image path */
   background-size: cover;
   background-repeat: no-repeat;
@@ -27,15 +28,16 @@ body {
   width: 100%;
   height: 100%;
 }
+
 .contents {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: rgb(0, 0, 0);
-    padding: 20px;
-    width: 100%; /* Ensures full width */
-    text-align: center; /* Centers text */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: rgb(0, 0, 0);
+  padding: 20px;
+  width: 100%; /* Ensures full width */
+  text-align: center; /* Centers text */
 }
 
 /* Navbar styles */
@@ -79,7 +81,7 @@ nav ul li a:hover, nav ul li a.active {
 
 /* Dropdown button styles */
 .dropdown {
-  position: relative; /* Changed float to position */
+  position: relative;
 }
 
 .dropdown .dropbtn {
@@ -90,7 +92,7 @@ nav ul li a:hover, nav ul li a.active {
   padding: 14px 20px;
   background-color: inherit;
   margin: 0;
-  cursor: pointer; /* Added cursor pointer */
+  cursor: pointer;
 }
 
 /* Dropdown content */
@@ -100,7 +102,7 @@ nav ul li a:hover, nav ul li a.active {
   background-color: #333;
   min-width: 160px;
   z-index: 1;
-  top: 100%; /* Added to position below the button */
+  top: 100%;
 }
 
 .dropdown-content a {
@@ -108,12 +110,12 @@ nav ul li a:hover, nav ul li a.active {
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-  transition: background-color 0.3s; /* Added transition for smooth hover effect */
+  transition: background-color 0.3s;
 }
 
 .dropdown-content a:hover {
-  background-color: #007f45; /* Changed hover background color */
-  color: white; /* Ensuring text color remains white */
+  background-color: #007f45;
+  color: white;
 }
 
 /* Show the dropdown content on hover */
@@ -122,20 +124,21 @@ nav ul li a:hover, nav ul li a.active {
 }
 
 /* Table container styles */
-.table-container, .table-container2,.table-container3 {
-    display: auto;
-    justify-content: center; /* Centers the tables horizontally */
-    margin-top: 20px;
-    gap: 20px; /* Optional: Add space between the two tables */
-    width: 200%; /* Ensure the container takes up full width */
-    padding: 0 20px; /* Add padding to the sides to prevent the table touching edges */
+.table-container, .table-container2, .table-container3 {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 20px;
+  width: 100%; /* Set to 100% to prevent horizontal scroll */
+  padding: 0 20px;
+  flex-wrap: wrap; /* Ensures proper wrapping */
 }
 
 .table, .table2, .table3 {
-  width: 48%; /* Adjust width for better spacing */
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add some shadow for visual appeal */
-    margin: 0 auto; /* Ensure the table itself is centered within its container */
+  width: 48%;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
 }
 
 table {
@@ -154,11 +157,11 @@ th {
 }
 
 tr:nth-child(even) {
-  background-color: #f9f9f9; /* Add alternating row colors */
+  background-color: #f9f9f9;
 }
 
 tr:hover {
-  background-color: #f1f1f1; /* Subtle hover effect on rows */
+  background-color: #f1f1f1;
 }
 
 /* Bold text */
@@ -175,8 +178,8 @@ tr:hover {
   }
 
   .table, .table2 {
-    width: 90%; /* Allow tables to use full width on smaller screens */
-    margin-bottom: 20px; /* Add spacing between tables */
+    width: 90%;
+    margin-bottom: 20px;
   }
 
   nav ul {
