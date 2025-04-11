@@ -45,7 +45,7 @@ foreach ($dailyReportResults as $row) {
 }
 
 $data = [
-    'dailyReport' => $departmentCounts, // Now returns company_name => count
+    'dailyReport' => $departmentCounts,
     'weeklyReport' => $weeklyReportResults,
     'monthlyReport' => $monthlyReportResults
 ];

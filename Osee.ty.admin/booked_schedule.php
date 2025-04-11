@@ -44,7 +44,7 @@ $status = 'Pending';
 
 // Mapping enum values to human-readable labels
 $venue_labels = [
-    'Open Court' => 'Open Court',
+    'OpenCourt' => 'OpenCourt',
     'Avr' => 'AVR',
     'Gym' => 'Gym',
     'Convention' => 'Convention',

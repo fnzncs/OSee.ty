@@ -52,13 +52,13 @@ if (!isset($_SESSION['username'])) {
                     var weeklyChart = new google.visualization.ColumnChart(document.getElementById('convention_weekly_chart'));
                     weeklyChart.draw(weeklyData, weeklyOptions);
 
-                    // Pie Chart for booking statuses (Daily)
-                    var statusData = google.visualization.arrayToDataTable([
-                        ['Status', 'Count'],
-                        ['ACCEPTED', data.dailyReport.ACCEPTED],
-                        ['DENIED', data.dailyReport.DENIED],
-                        ['CANCELLED', data.dailyReport.CANCELLED]
-                    ]);
+                    var statusData = new google.visualization.DataTable();
+                    statusData.addColumn('string', 'Department');
+                    statusData.addColumn('number', 'Bookings');
+
+                    for (const department in data.dailyReport) {
+                        statusData.addRow([department, data.dailyReport[department]]);
+                    }
 
                     var statusOptions = {
                         title: 'Convention Booking Statuses (Monthly)',
