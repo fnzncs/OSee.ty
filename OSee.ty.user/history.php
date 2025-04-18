@@ -147,30 +147,29 @@ $stmt_company->close();
                     <tbody>
                         <?php
                         if ($company_name) {
-                            $sql_cancellation = "SELECT * FROM `processschedule_list` WHERE `status` = 'Cancelled' AND `company_name` = ?";
-                            $stmt_cancel = $conn->prepare($sql_cancellation);
-                            $stmt_cancel->bind_param('s', $company_name);
-                            $stmt_cancel->execute();
-                            $result_cancellation = $stmt_cancel->get_result();
-
-                            if ($result_cancellation->num_rows > 0) {
-                                while ($row_cancel = $result_cancellation->fetch_assoc()) {
-                                    $venue_cancel = isset($venue_labels[$row_cancel['venue']]) ? $venue_labels[$row_cancel['venue']] : $row_cancel['venue']; 
+                            $sql_denied = "SELECT * FROM `historyschedule_list` WHERE `status` = 'DENIED' AND `company_name` = ?";
+                            $stmt_denied = $conn->prepare($sql_denied);
+                            $stmt_denied->bind_param('s', $company_name);
+                            $stmt_denied->execute();
+                            $result_denied = $stmt_denied->get_result();
+                            if ($result_denied->num_rows > 0) {
+                                while ($row_denied = $result_denied->fetch_assoc()) {
+                                    $venue_denied = isset($venue_labels[$row_denied['venue']]) ? $venue_labels[$row_denied['venue']] : $row_denied['venue']; 
                         ?>
                              <tr>
-                                <td><?php echo htmlspecialchars($row['title']); ?></td>
-                                <td><?php echo htmlspecialchars($row['fullname']); ?></td>
-                                <td><?php echo htmlspecialchars($row['company_name']); ?></td>
-                                <td><?php echo htmlspecialchars($row['start_datetime']); ?></td>
-                                <td><?php echo htmlspecialchars($row['end_datetime']); ?></td>
-                                <td><?php echo htmlspecialchars($venue); ?></td>
-                                <td><?php echo htmlspecialchars($row['description']); ?></td>
-                                <td><?php echo htmlspecialchars($row['status']); ?></td>
+                                <td><?php echo htmlspecialchars($row_denied['title']); ?></td>
+                                <td><?php echo htmlspecialchars($row_denied['fullname']); ?></td>
+                                <td><?php echo htmlspecialchars($row_denied['company_name']); ?></td>
+                                <td><?php echo htmlspecialchars($row_denied['start_datetime']); ?></td>
+                                <td><?php echo htmlspecialchars($row_denied['end_datetime']); ?></td>
+                                <td><?php echo htmlspecialchars($venue_denied); ?></td>
+                                <td><?php echo htmlspecialchars($row_denied['description']); ?></td>
+                                <td><?php echo htmlspecialchars($row_denied['status']); ?></td>
                             </tr>
                             <?php
                                 }
                             } else {
-                                echo "<tr><td colspan='8'>No cancelled for your department</td></tr>";
+                                echo "<tr><td colspan='8'>No cancellation for your department</td></tr>";
                             }
                         } else { 
                             // This will run if $company_name is empty
